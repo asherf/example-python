@@ -13,6 +13,12 @@ backend_packages.add = [
   'pants.backend.python.lint.black',
   'pants.backend.python.lint.flake8',
   'pants.backend.python.lint.isort',
+  "toolchain.pants.auth",
+  "toolchain.pants.buildsense",
+  "toolchain.pants.common",
+]
+plugins = [
+  "toolchain.pants.buildsense.plugin @ file:///Users/asher/projects/toolchain/dist/toolchain.pants.buildsense.plugin-0.0.2.tar.gz"
 ]
 
 [source]
@@ -38,3 +44,21 @@ config = [".isort.cfg"]
 
 [python-infer]
 imports = false
+
+streaming_workunits_handlers = ["toolchain.pants.buildsense.reporter.Reporter"]
+streaming_workunits_report_interval = 1
+
+[run-tracker]
+stats_option_scopes_to_record = ["GLOBAL"]
+stats_version = 2
+
+[toolchain-setup]
+repo = "example-python"
+
+[auth]
+base_url = "http://localhost:9500/api/v1"
+# auth_file = ".pants.d/toolchain_auth/auth-dev.json"
+
+[buildsense]
+base_url = "http://localhost:9500/api/v1/repos/"
+timeout = 10
