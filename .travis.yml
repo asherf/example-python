@@ -29,6 +29,7 @@ install:
   - ./pants --version  # This will bootstrap Pants
 
 script:
+  - git rev-parse --abbrev-ref HEAD
   - ./pants lint test '**'
   # Smoke test that our release process will work.
   - ./pants binary helloworld/main.py helloworld/main_py2.py
