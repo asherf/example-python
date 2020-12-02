@@ -11,6 +11,11 @@ os: linux
 dist: bionic
 language: python
 python: 3.7
+notifications:
+  webhooks:
+    urls:
+      -  https://webhooks.toolchain.com/travis/repo/toolchainlabs/example-python/
+    on_start:   always
 
 cache:
   directories:
